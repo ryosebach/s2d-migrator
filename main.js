@@ -3,7 +3,7 @@ const { WebClient } = require('@slack/client');
 const Discord = require('discord.js');
 const download = require('image-downloader')
 const cheerio = require('cheerio-httpcli')
-const fs = require('fs')
+const fs = require('fs-extra')
 const util = require('util')
 
 const guildName = process.env.DISCORD_GUILD;
@@ -76,5 +76,6 @@ slackClient.channels.list()
 		}
 	}
 	await fs.remove("./tmp/")
+	discordClient.destroy()
 })
 .catch(console.error);
