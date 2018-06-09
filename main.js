@@ -26,9 +26,7 @@ const transferImage = async (mes, discordChannel) => {
 			const info = await slackClient.files.sharedPublicURL({file: mes.file.id})
 						.catch(async () => await slackClient.files.info({file: mes.file.id}))
 			const imageInfo = await getImagePublicInfo(info)
-			if (!fs.existsSync('./tmp')) {
-				fs.mkdirSync('./tmp');
-			}
+			await fs.ensureDir("./tmp/")
 			await download.image({url: imageInfo.imageUrl, dest: "./tmp/"+imageInfo.imageName})
 			const buffer = fs.readFileSync("./tmp/"+imageInfo.imageName)
 			const attachment = new Discord.Attachment(buffer, imageInfo.imageName)
@@ -77,5 +75,6 @@ slackClient.channels.list()
 			await sendMessages(responses[count], discordChannel)
 		}
 	}
+	await fs.remove("./tmp/")
 })
 .catch(console.error);
