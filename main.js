@@ -12,8 +12,8 @@ const slackClient = new WebClient(token);
 const discordClient = new Discord.Client();
 
 const getImagePublicInfo = async(info) => {
-	return new Promise(resolve => {
-		const imageData = cheerio.fetchSync(info.file.permalink_public)
+	return new Promise(async resolve => {
+		const imageData = await cheerio.fetch(info.file.permalink_public)
 		resolve({imageUrl: imageData.$('img').attr('src'), imageName: info.file.name})
 	})
 }
