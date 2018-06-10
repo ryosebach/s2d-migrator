@@ -57,7 +57,7 @@ slackClient.channels.list()
 .then(async (res) => {
 	await discordClient.login(process.env.DISCORD_TOKEN);
 	for (const slackChannel of res.channels) {
-		console.log("-------" + slackChannel.name + "---------");
+		console.log("------- Migrate channel : " + slackChannel.name + " ---------");
 		const guild = await discordClient.guilds.find(v => v.name == guildName)
 		let discordChannel = guild.channels.find(v => v.name==slackChannel.name)
 		if(!discordChannel) 
