@@ -36,3 +36,7 @@ Set discord guild name to migrate
 # Using
 
 `node main.js`
+
+
+# LICENSE
+MIT
