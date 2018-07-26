@@ -39,12 +39,26 @@ const transferImage = async (mes, discordChannel) => {
 
 
 
-const sendMessages = (res, discordChannel) => {
+const sendMessages = (res, discordChannel, slackChannel) => {
 	return new Promise(async resolve => {
 		for (const mes of res.messages.reverse()) {
 			if(mes.text.match(/has joined the channel/)) continue;
 			if(mes.text=="") continue;
-			const sendMes = await transferImage(mes, discordChannel).catch(async () => await discordChannel.send(mes.text))
+			console.log(res)
+			console.log(mes)
+			if(mes.replies) {
+				const replyMessages = console.logawait slackClient.channels.replies({channel: slackChannel.id, ts: mes.ts})
+				migrateReplyMessages(replyMessages, discordChannel)
+			} else {
+				const sendMes = await transferImage(mes, discordChannel).catch(async () => await discordChannel.send(mes.text))
+				const sendmes = await discordChannel.send({content: "aaaa", embed: {
+					title: "hofe",
+					color: 3447003,
+					description: "A very simple Embed!"
+				}}
+			}
+			)
+
 		}
 		resolve()
 	})
@@ -57,6 +71,7 @@ slackClient.channels.list()
 .then(async (res) => {
 	await discordClient.login(process.env.DISCORD_TOKEN);
 	for (const slackChannel of res.channels) {
+		if(slackChannel.name != "test") continue;
 		console.log("------- Migrate channel : " + slackChannel.name + " ---------");
 		const guild = await discordClient.guilds.find(v => v.name == guildName)
 		let discordChannel = guild.channels.find(v => v.name==slackChannel.name)
@@ -72,7 +87,7 @@ slackClient.channels.list()
 					{channel: slackChannel.id, cursor: responses[count].response_metadata.next_cursor}))
 		}
 		for(;count >= 0;count--) {
-			await sendMessages(responses[count], discordChannel)
+			await sendMessages(responses[count], discordChannel, slackChannel)
 		}
 	}
 	await fs.remove("./tmp/")
