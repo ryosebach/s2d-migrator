@@ -4,21 +4,20 @@
   "description": "",
   "main": "app.js",
   "dependencies": {
-    "@slack/client": "^4.3.1",
+    "@slack/client": "^4.8.0",
     "@types/dotenv": "^4.0.3",
     "@types/fs-extra": "^5.0.4",
     "@types/slack-node": "^0.1.2",
     "cheerio-httpcli": "^0.7.3",
     "discord.js": "^11.4.2",
-    "dotenv": "^6.0.0",
+    "dotenv": "^6.1.0",
     "fs-extra": "^6.0.1",
     "gulp": "^3.9.1",
-    "image-downloader": "^3.4.0",
     "log4js": "^3.0.6",
     "node-fetch": "^2.2.0",
     "pm2": "^3.2.2",
     "tslint": "^5.11.0",
-    "typescript": "^3.0.3"
+    "typescript": "^3.1.6"
   },
   "devDependencies": {
     "gulp-absolute-path": "^1.0.3",
