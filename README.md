@@ -6,9 +6,6 @@ Slackのチャンネルを一つずつDiscordに移行します。
 Slackのチャンネル名と同じチャンネルがDiscordに存在すればそのチャンネルに、なければ作成して、
 メッセージをすべてDiscord-Tokenのユーザーとして送信します
 
-Slackにアップロードした画像は一度 `./tmp/` にダウンロードしてDiscordにアップロードし直します。
-
-
 # Installation
 
 Node.js 8.0.0 or newer is required.

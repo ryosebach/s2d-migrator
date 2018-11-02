@@ -8,7 +8,7 @@ import * as cheerio_client from 'cheerio-httpcli';
 import Slack from 'app/middlewares/slack';
 
 /**
- * slackのinfoのpermalink_publicを用いて画像のurlとファイルネームを取得する
+ * slackのinfoのpermalink_publicを用いて画像のurlとファイルネームを取得する。
  * @param info slack_cientから受け取ったinfo
  * @returns imageUrlとimageName
  */
@@ -18,7 +18,8 @@ export const getImagePublicInfo = async (info: any): Promise<{imageUrl: string; 
 };
 
 /**
- * slackのuploadImageのpublic_url含むinfoを取得する
+ * slackのuploadImageのpublic_url含むinfoを取得する。
+ * sharedPublicURLはすでにpublic担っている際にエラーを返すのでcatchで通常のinfoを返す。
  */
 export const getPublicInfo = async (fileId: string): Promise<any> => {
     return Slack.client.files.sharedPublicURL({file: fileId})
