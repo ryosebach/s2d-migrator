@@ -23,7 +23,7 @@
     "gulp-absolute-path": "^1.0.3",
     "gulp-cached": "^1.1.1",
     "gulp-sourcemaps": "^2.6.4",
-    "gulp-typescript": "^5.0.0-alpha.3",
+    "gulp-typescript": "^5.0.1",
     "merge2": "^1.2.3",
     "tslint-microsoft-contrib": "^5.2.1"
   },
